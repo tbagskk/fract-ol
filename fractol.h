@@ -30,4 +30,15 @@ typedef struct	s_fractal
   int			iter;
 }				t_fractal;
 
+typedef struct s_caca
+{
+  double         zoom;
+  int         max_iter;
+  mlx_t*      mlx;
+  mlx_image_t* img;
+  double        x;
+  double        y;
+  
+}               t_caca;
+
 #endif

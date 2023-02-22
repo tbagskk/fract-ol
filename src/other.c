@@ -1,15 +1,12 @@
 #include "../fractol.h"
 
-void	choose_fractal(void *param)
+void	choose_fractal(int nb, t_caca *caca, t_fractal *f)
 {	
-	t_caca		*caca;
-	t_fractal	*f;
-
-	caca = malloc(sizeof(t_caca));
 	f = (t_fractal *)malloc(sizeof(t_fractal));
-	caca = param;
-	if (caca->shift % 2 == 0)
+
+	if (nb == 2)
 		mandelbrot(f, caca->mlx, caca->img, caca);
-	else
+	else if(nb == 1)
 		julia(f, caca->mlx, caca->img, caca);
+	free(f);
 }

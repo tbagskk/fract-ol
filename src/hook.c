@@ -1,27 +1,19 @@
 #include "../fractol.h"
 
-void	julia_valeur(int nb, void *param)
+void	julia_valeur(int nb, t_caca *caca, t_fractal *f)
 {
-	t_caca		*caca;
-	t_fractal	*f;
-
-	caca = malloc(sizeof(t_caca));
-	f = (t_fractal *)malloc(sizeof(t_fractal));
-	caca = param;
 	if (nb == 1)
 	{
 		caca->x_julia -= 0.1;
 		caca->y_julia -= 0.1;
-		julia(f, caca->mlx, caca->img, caca);
+		choose_fractal(caca->shift, caca, f);
 	}
 	else if (nb == 2)
 	{
 		caca->x_julia += 0.1;
 		caca->y_julia += 0.1;
-		julia(f, caca->mlx, caca->img, caca);
+		choose_fractal(caca->shift, caca, f);
 	}
-
-
 }
 
 void	loop_hook(void *param)
@@ -29,19 +21,22 @@ void	loop_hook(void *param)
 	t_caca		*caca;
 	t_fractal	*f;
 
-	//caca = malloc(sizeof(t_caca));
-	//f = (t_fractal *)malloc(sizeof(t_fractal));
 	caca = param;
 	if (mlx_is_key_down(caca->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(caca->mlx);
-	else if (mlx_is_key_down(caca->mlx, MLX_KEY_G))
-		julia_valeur(2, param);
-	else if (mlx_is_key_down(caca->mlx, MLX_KEY_F))
-		julia_valeur(1, param);
-	else if (mlx_is_key_down(caca->mlx, MLX_KEY_LEFT_SHIFT))
+	else if (mlx_is_key_down(caca->mlx, MLX_KEY_RIGHT))
+		julia_valeur(2, caca, f);
+	else if (mlx_is_key_down(caca->mlx, MLX_KEY_LEFT))
+		julia_valeur(1, caca, f);
+	else if (mlx_is_key_down(caca->mlx, MLX_KEY_1))
 	{
-		caca->shift += 1;
-		choose_fractal(param);
+		caca->shift = 1;
+		choose_fractal(caca->shift , caca, f);
+	}
+	else if (mlx_is_key_down(caca->mlx, MLX_KEY_2))
+	{
+		caca->shift = 2;
+		choose_fractal(caca->shift , caca, f);
 	}
 }
 
@@ -49,21 +44,19 @@ void	my_scrollhook(double xdelta, double ydelta, void *param)
 {	
 	t_caca		*caca;
 	t_fractal	*f;
-	int			x;
-	int			y;
 
 	(void)xdelta;
-	//caca = malloc(sizeof(t_caca));
 	caca = param;
-	//f = (t_fractal *)malloc(sizeof(t_fractal));
 	if (ydelta > 0)
 	{
 		caca->zoom = caca->zoom * 0.80;
-		choose_fractal(param);
+		caca->max_iter += 5;
+		choose_fractal(caca->shift, caca, f);
 	}
 	else if (ydelta < 0)
 	{
 		caca->zoom = caca->zoom / 0.80;
-		choose_fractal(param);
+		caca->max_iter -= 5;
+		choose_fractal(caca->shift, caca, f);
 	}
 }

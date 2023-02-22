@@ -8,11 +8,12 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <math.h>
 
 #define WIDTH 1200
 #define HEIGHT 800
 
-#define RED 0xFF0000FF
+#define WHITE  0xFFFFFFFF
 #define GREEN 0x00FF00FF
 #define BLUE 0x0000FFFF
 #define PINK 0xFF00F4FF
@@ -37,21 +38,37 @@ typedef struct	s_fractal
   int			iter;
 }				t_fractal;
 
+/*
+typedef struct s_mlx
+{
+    void  *mlx;
+    void  *img;
+}   t_mlx;
+*/
 typedef struct s_caca
 {
+  //t_mlx         *mlx;
   double         zoom;
   int         max_iter;
-  mlx_t*      mlx;
-  mlx_image_t* img;
+   mlx_t*      mlx;
+   mlx_image_t* img;
   double        x;
   double        y;
   double        x_julia;
   double        y_julia;
   t_complex		c;
-  
+  int width;
+  int height;
+   int width2;
+  int height2;
+  int shift;
 }               t_caca;
 
-int		mandelbrot(t_fractal *f, mlx_t *mlx, void *img, t_caca *caca);
+void		mandelbrot(t_fractal *f, mlx_t *mlx, void *img, t_caca *caca);
 int get_color(int iter);
-int julia(t_fractal *f, mlx_t *mlx, void *img, t_caca *caca);
+void julia(t_fractal *f, mlx_t *mlx, void *img, t_caca *caca);
+void choose_fractal(void *param);
+void loop_hook(void *param);
+void my_scrollhook(double xdelta, double ydelta,void *param);
+
 #endif

@@ -1,7 +1,11 @@
 NAME = a.out
 
 SRCS =	src/main.c \
-		src/fractol.c
+		src/fractol.c \
+		src/other.c \
+		src/hook.c \
+		src/color.c
+
 		
 
 OBJS =	${SRCS:.c=.o}

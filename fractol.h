@@ -2,8 +2,15 @@
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-#define WIDTH 700
-#define HEIGHT 700
+#include "MLX42/include/MLX42/MLX42.h"
+#include <stdlib.h>
+#include <memory.h>
+#include <stdbool.h>
+#include <stdio.h>
+#include <unistd.h>
+
+#define WIDTH 1200
+#define HEIGHT 800
 
 #define RED 0xFF0000FF
 #define GREEN 0x00FF00FF
@@ -38,7 +45,13 @@ typedef struct s_caca
   mlx_image_t* img;
   double        x;
   double        y;
+  double        x_julia;
+  double        y_julia;
+  t_complex		c;
   
 }               t_caca;
 
+int		mandelbrot(t_fractal *f, mlx_t *mlx, void *img, t_caca *caca);
+int get_color(int iter);
+int julia(t_fractal *f, mlx_t *mlx, void *img, t_caca *caca);
 #endif

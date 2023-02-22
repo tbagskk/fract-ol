@@ -1,6 +1,7 @@
 NAME = a.out
 
-SRCS =	fraaaaaactol.c
+SRCS =	src/main.c \
+		src/fractol.c
 		
 
 OBJS =	${SRCS:.c=.o}

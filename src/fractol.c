@@ -1,6 +1,6 @@
 #include "../fractol.h"
 
-int		mandelbrot(t_fractal *f, mlx_t *mlx, void *img, t_caca *caca)
+void		mandelbrot(t_fractal *f, mlx_t *mlx, void *img, t_caca *caca)
 {
   int	iter;
   int	color;
@@ -26,13 +26,11 @@ int		mandelbrot(t_fractal *f, mlx_t *mlx, void *img, t_caca *caca)
       }
       color = get_color(iter);
       mlx_put_pixel(img, x, y, color);
-	   
     }
   } 
-  return (0);
 }
 
-int julia(t_fractal *f, mlx_t *mlx, void *img, t_caca *caca)
+void julia(t_fractal *f, mlx_t *mlx, void *img, t_caca *caca)
 {
   int iter;
   int color;
@@ -61,5 +59,4 @@ int julia(t_fractal *f, mlx_t *mlx, void *img, t_caca *caca)
       mlx_put_pixel(img, x, y, color);
     }
   }
-  return (0);
 }

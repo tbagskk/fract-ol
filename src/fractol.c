@@ -35,7 +35,7 @@ void	mandelbrot(t_fractal *f, mlx_t *mlx, void *img, t_caca *caca)
 				f->z = (t_complex){f->z.r * f->z.r - f->z.i * f->z.i + f->c.r,
 					2 * f->z.r * f->z.i + f->c.i};
 			}
-			caca->color = get_color(caca->iter, caca);
+			caca->color = choose_color(caca->iter, caca);
 			mlx_put_pixel(img, x, y, caca->color);
 		}
 	}	
@@ -70,7 +70,7 @@ void	julia(t_fractal *f, mlx_t *mlx, void *img, t_caca *caca)
 			while (f->z.r * f->z.r + f->z.i * f->z.i
 				< 4 && ++caca->iter <= caca->max_iter)
 				calcul(f, caca);
-			caca->color = get_color(caca->iter, caca);
+			caca->color =  choose_color(caca->iter, caca);
 			mlx_put_pixel(img, x, y, caca->color);
 		}
 	}

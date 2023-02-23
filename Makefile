@@ -4,7 +4,8 @@ SRCS =	src/main.c \
 		src/fractol.c \
 		src/other.c \
 		src/hook.c \
-		src/color.c
+		src/color.c \
+		src/textures.c
 
 		
 

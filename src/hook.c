@@ -40,6 +40,8 @@ void	loop_hook(void *param)
 		julia_valeur(2, caca, f);
 	else if (mlx_is_key_down(caca->mlx, MLX_KEY_LEFT))
 		julia_valeur(1, caca, f);
+	else if (mlx_is_key_down(caca->mlx, MLX_KEY_LEFT_SHIFT))
+		action_color(f, caca);
 	else if (mlx_is_key_down(caca->mlx, MLX_KEY_1))
 	{
 		caca->shift = 1;
@@ -62,13 +64,13 @@ void	my_scrollhook(double xdelta, double ydelta, void *param)
 	if (ydelta > 0)
 	{
 		caca->zoom = caca->zoom * 0.80;
-		caca->max_iter += 5;
+		caca->max_iter += 2;
 		choose_fractal(caca->shift, caca, f);
 	}
 	else if (ydelta < 0)
 	{
 		caca->zoom = caca->zoom / 0.80;
-		caca->max_iter -= 5;
+		caca->max_iter -= 2;
 		choose_fractal(caca->shift, caca, f);
 	}
 }

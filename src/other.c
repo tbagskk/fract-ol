@@ -12,18 +12,18 @@
 
 #include "../fractol.h"
 
-void	choose_fractal(int nb, t_caca *caca, t_fractal *f)
+void	choose_fractal(int nb, t_fract *fract, t_fractal *f)
 {	
 	f = (t_fractal *)malloc(sizeof(t_fractal));
 	if (nb == 2)
 	{
-		mandelbrot(f, caca->mlx, caca->img, caca);
-		textures_fract(f, caca);
+		mandelbrot(f, fract->mlx, fract->img, fract);
+		textures_fract(f, fract);
 	}	
 	else if (nb == 1)
 	{
-		julia(f, caca->mlx, caca->img, caca);
-		textures_fract(f, caca);
+		julia(f, fract->mlx, fract->img, fract);
+		textures_fract(f, fract);
 	}	
 	free(f);
 }
@@ -38,7 +38,7 @@ int	ft_strcmp(char *s1, char *s2)
 	return (s1[i] - s2[i]);
 }
 
-int	verif_fractal(char *str, t_fractal *f, t_caca *caca)
+int	verif_fractal(char *str, t_fractal *f, t_fract *fract)
 {
 	char	*str2;
 	int		i;
@@ -47,9 +47,9 @@ int	verif_fractal(char *str, t_fractal *f, t_caca *caca)
 	i = 0;
 	j = 0;
 	if (ft_strcmp(str, "julia") == 0)
-		caca->fract = 2;
+		fract->fract = 2;
 	else if (ft_strcmp(str, "mandelbrot") == 0)
-		caca->fract = 1;
+		fract->fract = 1;
 	else
 	{
 		write(1, "error -> ", 9);
@@ -60,7 +60,7 @@ int	verif_fractal(char *str, t_fractal *f, t_caca *caca)
 	return (1);
 }
 
-int	verif_ac(int ac, char *str, t_fractal *f, t_caca *caca)
+int	verif_ac(int ac, char *str, t_fractal *f, t_fract *fract)
 {
 	if (ac < 2)
 	{
@@ -69,7 +69,7 @@ int	verif_ac(int ac, char *str, t_fractal *f, t_caca *caca)
 	}
 	else if (ac == 2)
 	{
-		if (((verif_fractal(str, f, caca)) == 1))
+		if (((verif_fractal(str, f, fract)) == 1))
 			return (1);
 	}		
 	else if (ac > 2)

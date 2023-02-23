@@ -43,7 +43,7 @@ typedef struct s_fractal
 	int				iter;
 }				t_fractal;
 
-typedef struct s_caca
+typedef struct s_fract
 {
 	mlx_t		*mlx;
 	mlx_image_t	*img;
@@ -69,23 +69,23 @@ typedef struct s_caca
 	int			y2;
 	int			fract;
 	int			color_shift;
-}				t_caca;
+}				t_fract;
 
-void	mandelbrot(t_fractal *f, mlx_t *mlx, void *img, t_caca *caca);
-int		get_color(int iter, t_caca *caca);
-void	julia_valeur(int nb, t_caca *caca, t_fractal *f);
-void	choose_fractal(int nb, t_caca *caca, t_fractal *f);
+void	mandelbrot(t_fractal *f, mlx_t *mlx, void *img, t_fract *fract);
+int		get_color(int iter, t_fract *fract);
+void	julia_valeur(int nb, t_fract *fract, t_fractal *f);
+void	choose_fractal(int nb, t_fract *fract, t_fractal *f);
 void	loop_hook(void *param);
 void	my_scrollhook(double xdelta, double ydelta, void *param);
-void	julia(t_fractal *f, mlx_t *mlx, void *img, t_caca *caca);
-void	calcul(t_fractal *f, t_caca *caca);
+void	julia(t_fractal *f, mlx_t *mlx, void *img, t_fract *fract);
+void	calcul(t_fractal *f, t_fract *fract);
 int		ft_strcmp(char *s1, char *s2);
-int		verif_fractal(char *str, t_fractal *f, t_caca *caca);
-int		verif_ac(int ac, char *str, t_fractal *f, t_caca *caca);
-void	textures_fract(t_fractal *f, t_caca *caca);
-int		choose_color(int iter, t_caca *caca);
-void	action_color(t_fractal *f, t_caca *caca);
-void	textures_param(t_fractal *f, t_caca *caca);
-void	init_textures(t_fractal *f, t_caca *caca);
+int		verif_fractal(char *str, t_fractal *f, t_fract *fract);
+int		verif_ac(int ac, char *str, t_fractal *f, t_fract *fract);
+void	textures_fract(t_fractal *f, t_fract *fract);
+int		choose_color(int iter, t_fract *fract);
+void	action_color(t_fractal *f, t_fract *fract);
+void	textures_param(t_fractal *f, t_fract *fract);
+void	init_textures(t_fractal *f, t_fract *fract);
 
 #endif

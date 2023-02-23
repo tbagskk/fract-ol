@@ -12,65 +12,65 @@
 
 #include "../fractol.h"
 
-void	julia_valeur(int nb, t_caca *caca, t_fractal *f)
+void	julia_valeur(int nb, t_fract *fract, t_fractal *f)
 {
 	if (nb == 1)
 	{
-		caca->x_julia -= 0.1;
-		caca->y_julia -= 0.1;
-		choose_fractal(caca->shift, caca, f);
+		fract->x_julia -= 0.1;
+		fract->y_julia -= 0.1;
+		choose_fractal(fract->shift, fract, f);
 	}
 	else if (nb == 2)
 	{
-		caca->x_julia += 0.1;
-		caca->y_julia += 0.1;
-		choose_fractal(caca->shift, caca, f);
+		fract->x_julia += 0.1;
+		fract->y_julia += 0.1;
+		choose_fractal(fract->shift, fract, f);
 	}
 }
 
 void	loop_hook(void *param)
 {
-	t_caca		*caca;
+	t_fract		*fract;
 	t_fractal	*f;
 
-	caca = param;
-	if (mlx_is_key_down(caca->mlx, MLX_KEY_ESCAPE))
-		mlx_close_window(caca->mlx);
-	else if (mlx_is_key_down(caca->mlx, MLX_KEY_RIGHT))
-		julia_valeur(2, caca, f);
-	else if (mlx_is_key_down(caca->mlx, MLX_KEY_LEFT))
-		julia_valeur(1, caca, f);
-	else if (mlx_is_key_down(caca->mlx, MLX_KEY_LEFT_SHIFT))
-		action_color(f, caca);
-	else if (mlx_is_key_down(caca->mlx, MLX_KEY_1))
+	fract = param;
+	if (mlx_is_key_down(fract->mlx, MLX_KEY_ESCAPE))
+		mlx_close_window(fract->mlx);
+	else if (mlx_is_key_down(fract->mlx, MLX_KEY_RIGHT))
+		julia_valeur(2, fract, f);
+	else if (mlx_is_key_down(fract->mlx, MLX_KEY_LEFT))
+		julia_valeur(1, fract, f);
+	else if (mlx_is_key_down(fract->mlx, MLX_KEY_LEFT_SHIFT))
+		action_color(f, fract);
+	else if (mlx_is_key_down(fract->mlx, MLX_KEY_1))
 	{
-		caca->shift = 1;
-		choose_fractal(caca->shift, caca, f);
+		fract->shift = 1;
+		choose_fractal(fract->shift, fract, f);
 	}
-	else if (mlx_is_key_down(caca->mlx, MLX_KEY_2))
+	else if (mlx_is_key_down(fract->mlx, MLX_KEY_2))
 	{
-		caca->shift = 2;
-		choose_fractal(caca->shift, caca, f);
+		fract->shift = 2;
+		choose_fractal(fract->shift, fract, f);
 	}
 }
 
 void	my_scrollhook(double xdelta, double ydelta, void *param)
 {	
-	t_caca		*caca;
+	t_fract		*fract;
 	t_fractal	*f;
 
 	(void)xdelta;
-	caca = param;
+	fract = param;
 	if (ydelta > 0)
 	{
-		caca->zoom = caca->zoom * 0.80;
-		caca->max_iter += 2;
-		choose_fractal(caca->shift, caca, f);
+		fract->zoom = fract->zoom * 0.80;
+		fract->max_iter += 2;
+		choose_fractal(fract->shift, fract, f);
 	}
 	else if (ydelta < 0)
 	{
-		caca->zoom = caca->zoom / 0.80;
-		caca->max_iter -= 2;
-		choose_fractal(caca->shift, caca, f);
+		fract->zoom = fract->zoom / 0.80;
+		fract->max_iter -= 2;
+		choose_fractal(fract->shift, fract, f);
 	}
 }

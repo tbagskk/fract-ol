@@ -13,68 +13,68 @@
 #include "../fractol.h"
 #include <unistd.h>
 
-void	init_values(t_caca *caca)
+void	init_values(t_fract *fract)
 {
-	caca->shift = 1;
-	caca->zoom = 10;
-	caca->max_iter = 10;
-	caca->x = 0;
-	caca->y = 0;
-	caca->x_julia = 0.8;
-	caca->y_julia = 0.285;
-	caca->width = 1200;
-	caca->height = 800;
-	caca->width2 = 1200;
-	caca->height2 = 800;
-	caca->color_r = 10;
-	caca->color_g = 20;
-	caca->color_b = 30;
-	caca->color_shift = 1;
+	fract->shift = 1;
+	fract->zoom = 10;
+	fract->max_iter = 10;
+	fract->x = 0;
+	fract->y = 0;
+	fract->x_julia = 0.8;
+	fract->y_julia = 0.285;
+	fract->width = 1200;
+	fract->height = 800;
+	fract->width2 = 1200;
+	fract->height2 = 800;
+	fract->color_r = 10;
+	fract->color_g = 20;
+	fract->color_b = 30;
+	fract->color_shift = 1;
 }
 
-void	launch(t_fractal *f, t_caca *caca)
+void	launch(t_fractal *f, t_fract *fract)
 {
-	if (caca->fract == 2)
-		julia(f, caca->mlx, caca->img, caca);
-	else if (caca->fract == 1)
+	if (fract->fract == 2)
+		julia(f, fract->mlx, fract->img, fract);
+	else if (fract->fract == 1)
 	{
-		caca->shift = 2;
-		mandelbrot(f, caca->mlx, caca->img, caca);
+		fract->shift = 2;
+		mandelbrot(f, fract->mlx, fract->img, fract);
 	}	
 }
 
-void	loop(t_fractal *f, t_caca *caca)
+void	loop(t_fractal *f, t_fract *fract)
 {
 	mlx_image_t	*background;
 
-	caca->mlx = mlx_init(1200, 800, "fractol", true);
-	caca->img = mlx_new_image(caca->mlx, WIDTH, HEIGHT);
-	background = mlx_new_image(caca->mlx, 1200, 800);
+	fract->mlx = mlx_init(1200, 800, "fractol", true);
+	fract->img = mlx_new_image(fract->mlx, WIDTH, HEIGHT);
+	background = mlx_new_image(fract->mlx, 1200, 800);
 	memset(background->pixels, 255, background->width
 		* background->height * sizeof(int));
-	mlx_image_to_window(caca->mlx, background, 0, 0);
-	mlx_image_to_window(caca->mlx, caca->img, 0, 0);
+	mlx_image_to_window(fract->mlx, background, 0, 0);
+	mlx_image_to_window(fract->mlx, fract->img, 0, 0);
 }
 
 int	main(int ac, char **av)
 {
-	t_caca		*caca;
+	t_fract		*fract;
 	t_fractal	*f;
 
 	f = (t_fractal *)malloc(sizeof(t_fractal));
-	caca = malloc(sizeof(t_caca));
-	init_values(caca);
-	if ((verif_ac(ac, av[1], f, caca)))
+	fract = malloc(sizeof(t_fract));
+	init_values(fract);
+	if ((verif_ac(ac, av[1], f, fract)))
 	{
-		loop(f, caca);
-		launch(f, caca);
-		textures_fract(f, caca);
-		textures_param(f, caca);
-		mlx_loop_hook(caca->mlx, &loop_hook, caca);
-		mlx_scroll_hook(caca->mlx, &my_scrollhook, caca);
-		mlx_loop(caca->mlx);
+		loop(f, fract);
+		launch(f, fract);
+		textures_fract(f, fract);
+		textures_param(f, fract);
+		mlx_loop_hook(fract->mlx, &loop_hook, fract);
+		mlx_scroll_hook(fract->mlx, &my_scrollhook, fract);
+		mlx_loop(fract->mlx);
 	}
-	free(caca);
+	free(fract);
 	free(f);
 	return (0);
 }

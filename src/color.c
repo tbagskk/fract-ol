@@ -6,14 +6,13 @@
 /*   By: gcherqui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 08:03:43 by gcherqui          #+#    #+#             */
-/*   Updated: 2023/02/23 08:03:53 by gcherqui         ###   ########.fr       */
+/*   Updated: 2023/02/23 15:49:40 by gcherqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fractol.h"
 
-
-void action_color(t_fractal *f, t_caca *caca)
+void	action_color(t_fractal *f, t_caca *caca)
 {
 	caca->color_shift += 1;
 	choose_fractal(caca->shift, caca, f);
@@ -61,10 +60,10 @@ int	get_color3(int iter, t_caca *caca)
 	return (r << 16 | g << 8 | b);
 }
 
-int choose_color(int iter, t_caca *caca)
+int	choose_color(int iter, t_caca *caca)
 {
-	int a;
-	
+	int	a;
+
 	a = 0;
 	if (caca->color_shift > 3)
 		caca->color_shift = 1;
@@ -74,7 +73,5 @@ int choose_color(int iter, t_caca *caca)
 		a = get_color2(iter, caca);
 	else if (caca->color_shift == 3)
 		a = get_color3(iter, caca);
-	
 	return (a);
-
 }

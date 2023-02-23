@@ -6,7 +6,7 @@
 /*   By: gcherqui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 08:28:21 by gcherqui          #+#    #+#             */
-/*   Updated: 2023/02/23 12:58:41 by gcherqui         ###   ########.fr       */
+/*   Updated: 2023/02/23 15:40:38 by gcherqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int		verif_ac(int ac, char *str, t_fractal *f, t_caca *caca);
 void	textures_fract(t_fractal *f, t_caca *caca);
 int		choose_color(int iter, t_caca *caca);
 void	action_color(t_fractal *f, t_caca *caca);
-void 	textures_param(t_fractal *f, t_caca *caca);
+void	textures_param(t_fractal *f, t_caca *caca);
 void	init_textures(t_fractal *f, t_caca *caca);
 
 #endif

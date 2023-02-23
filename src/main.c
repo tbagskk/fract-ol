@@ -76,6 +76,5 @@ int	main(int ac, char **av)
 	}
 	free(caca);
 	free(f);
-	system("leaks a.out");
 	return (0);
 }

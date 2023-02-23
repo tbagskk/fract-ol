@@ -6,7 +6,7 @@
 /*   By: gcherqui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 08:08:15 by gcherqui          #+#    #+#             */
-/*   Updated: 2023/02/23 09:11:44 by gcherqui         ###   ########.fr       */
+/*   Updated: 2023/02/23 16:05:41 by gcherqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	julia(t_fractal *f, mlx_t *mlx, void *img, t_caca *caca)
 			while (f->z.r * f->z.r + f->z.i * f->z.i
 				< 4 && ++caca->iter <= caca->max_iter)
 				calcul(f, caca);
-			caca->color =  choose_color(caca->iter, caca);
+			caca->color = choose_color(caca->iter, caca);
 			mlx_put_pixel(img, x, y, caca->color);
 		}
 	}
